@@ -1,0 +1,17 @@
+options:
+  github_client:
+    type: string
+    default:
+    description: "Github application client id"
+  github_secret:
+    type: string
+    default:
+    description: "Github application secret"
+  gogs_url:
+    type: string
+    default:
+    description: "URL of GOGS server"
+  gogs_secret:
+    type: string
+    default:
+    description: "GOGS Application Secret Key"

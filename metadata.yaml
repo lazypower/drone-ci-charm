@@ -1,0 +1,15 @@
+name: drone
+summary: <Fill in summary here>
+maintainer: Charles Butler <Charles.Butler@Bushido>
+description: |
+  <Multi-line description here>
+tags:
+  - misc
+subordinate: false
+provides:
+  website:
+    interface: http
+requires:
+  mysqldb:
+    interface: mysql
+
