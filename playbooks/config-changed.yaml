@@ -1,0 +1,34 @@
+---
+
+- name: Add upstream apt key
+    apt_key: id=36A1D7869245C8950F966E92D8576A8BA88D21E9 keyserver=keyserver.ubuntu.com
+
+- name: Add Upstream apt repository
+    apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
+
+- name: Install required packages.
+    apt: name={{item}} state=present update_cache=yes
+    with_items:
+        - lxc-docker
+        - pwgen
+
+- name: Generate secret session token
+  command: pwgen -c -s -1 60
+  register: session_token
+
+- set_fact:
+    appsecret: "{{session_token.stdout}}"
+  notify: "render drone template"
+
+- name: Fetch Drone.
+  get_url: url=http://downloads.drone.io/master/drone.deb dest=/tmp/drone.deb
+
+- name: Install Drone
+  command: dpkg -i /tmp/drone.deb
+  args:
+     creates: /usr/local/bin/droned
+
+- name: render drone template
+  template: src=../templates/drone.toml dest=/etc/drone/drone.toml
+
+
