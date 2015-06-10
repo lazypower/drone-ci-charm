@@ -7,8 +7,8 @@
 
 {% if github_client != '' %}
 [github]
-  client = {{ github_client }}
-  secret = {{ github_secret }}
+  client = "{{ github_client }}"
+  secret = "{{ github_secret }}"
 {% endif %}
 
 [worker] 

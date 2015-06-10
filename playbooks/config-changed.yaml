@@ -1,16 +1,16 @@
 ---
 
 - name: Add upstream apt key
-    apt_key: id=36A1D7869245C8950F966E92D8576A8BA88D21E9 keyserver=keyserver.ubuntu.com
+  apt_key: id=36A1D7869245C8950F966E92D8576A8BA88D21E9 keyserver=keyserver.ubuntu.com
 
 - name: Add Upstream apt repository
-    apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
+  apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
 
 - name: Install required packages.
-    apt: name={{item}} state=present update_cache=yes
-    with_items:
-        - lxc-docker
-        - pwgen
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+      - lxc-docker
+      - pwgen
 
 - name: Generate secret session token
   command: pwgen -c -s -1 60
