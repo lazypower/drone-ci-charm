@@ -1,8 +1,7 @@
 name: drone
 summary: <Fill in summary here>
 maintainer: Charles Butler <Charles.Butler@Bushido>
-description: |
-  <Multi-line description here>
+description: deploys drone.io - a docker based CI system
 tags:
   - misc
 subordinate: false
