@@ -1,0 +1,15 @@
+pull-images:
+  description: Load the CI instance with images
+  params:
+    name:
+      description: Name of the CI image
+      type: string
+activate-wall:
+  description: Run the DRONE Wall application on port 3000
+  params:
+    domain:
+      type: string
+      description: domain for resolution purposes
+    token:
+      type: string
+      description: API Token from your user page

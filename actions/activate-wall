@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -eu
+
+API_DOMAIN=$(action-get domain)
+API_TOKEN=$(action-get token)
+
+set +e
+docker kill dronewall && docker rm dronewall
+set -e
+
+
+docker pull scottwferg/drone-wall
+
+docker run -d --restart=on-failure -p 3000:3000 -e API_SCHEME=http \
+    -e API_DOMAIN=$API_DOMAIN -e API_TOKEN=$API_TOKEN -e API_PORT=80 \
+    --name=dronewall scottwferg/drone-wall
