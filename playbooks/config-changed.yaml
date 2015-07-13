@@ -32,3 +32,6 @@
   template: src=../templates/drone.toml dest=/etc/drone/drone.toml
 
 
+- name: Open port 80
+  command: open-port 80
+
