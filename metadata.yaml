@@ -1,7 +1,11 @@
 name: drone
-summary: <Fill in summary here>
+summary: Drone.IO is a docker based CI system written in golang
 maintainer: Charles Butler <Charles.Butler@Bushido>
-description: deploys drone.io - a docker based CI system
+description: |
+    deploys drone.io, docker, and exposes port 80. Additional actions are
+    available to further enhance the DroneCI service, such as drone-wall a CI
+    status board for your team to keep an eye on builds. See the `readme` for
+    more information.
 tags:
   - misc
 subordinate: false
