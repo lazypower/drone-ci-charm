@@ -1,17 +1,15 @@
 #!/usr/bin/make
 
-build: virtualenv lint
+build: tox lint
 
-virtualenv: .venv/bin/python
-.venv/bin/python:
-	sudo apt-get install python-virtualenv
-	virtualenv .venv
-	.venv/bin/pip install nose flake8 mock pyyaml
+tox:
+/usr/bin/tox:
+	sudo apt-get install -y  python-tox python-dev python-virtualenv
 
-lint:
-	@.venv/bin/flake8 hooks unit_tests
-	@charm proof
+lint: /usr/bin/tox
+	tox
 
 clean:
-	rm -rf .venv
-	find -name *.pyc -delete
+	@rm -rf .venv
+	@rm -rf .tox
+	@find -name *.pyc -delete
