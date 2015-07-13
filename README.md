@@ -1,6 +1,8 @@
 # DRONE CI
 
-Drone is a continuous integration platform build on Docker, written in Golang.
+[![Build Status](http://drone.dasroot.net/api/badge/github.com/chuckbutler/drone-ci-charm/status.svg?branch=master)](http://drone.dasroot.net/github.com/chuckbutler/drone-ci-charm)
+
+Drone is a continuous integration platform built on Docker, written in Golang.
 
 This charm will deploy a single Drone CI server to execute builds against your
 git repositories hosted by:
@@ -10,7 +12,7 @@ git repositories hosted by:
 - Gogs
 - BitBucket
 
-Drone CI has a flexible job conficuration via a single `.drone.yml` include in
+Drone CI has a flexible job configuration via a single `.drone.yml` include in
 your repository. For more information, see the [upstream documentation](https://github.com/drone/drone/blob/v0.2.1/README.md#builds)
 
 
