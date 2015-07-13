@@ -13,3 +13,5 @@ activate-wall:
     token:
       type: string
       description: API Token from your user page
+upgrade-drone:
+    description: Pull the drone APT package and upgrade
