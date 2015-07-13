@@ -5,7 +5,7 @@
   secret="{{appsecret}}"
   expires="72h"
 
-{% if github_client != '' %}
+{% if github_enabled == True %}
 [github]
   client = "{{ github_client }}"
   secret = "{{ github_secret }}"
