@@ -61,6 +61,26 @@ on the charm
     juju set drone github_client=XXX github_secret=XXX github_enabled=true
 
 
+#### Config Helper
+
+> This is beta, has very little error checking, and may or may not work given
+> the input you feed the script. Please use with caution.
+
+
+The charm ships with a script to assist in configuring jobs. This is best run
+locally
+
+    git clone https://github.com/chuckbutler/drone-ci-charm drone
+    cd drone/scripts
+    ./config -e {{environment}} -r {{repository https clone url}} -c {{charm name}}
+
+You will receive output that is copy/pasteable to both the drone-ci repository
+configuration, and the .drone.yaml to be embedded in the git repository.
+
+![drone-ci repository helper script](docs/img/script_helper.png)
+![drone-ci github API setup](docs/img/repository_config.png)
+
+
 ## Known Issues / Caveats
 
 #### Auth Providers
