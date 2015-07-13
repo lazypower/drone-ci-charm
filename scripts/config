@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+import argparse
+import base64
+import os
+
+
+def repository_config(args):
+    repo = args.repository
+    repo = repo.replace('.git', '')
+    repo = repo.replace('https://', '')
+    repo = repo.replace('http://', '')
+
+    LOCFG = """
+image: jujusolutions/charmbox
+git:
+  path: {repository}
+script:
+  - sudo apt-get update
+  - juju init
+  - echo $ENVYAML | base64 --decode > ~/.juju/environments.yaml
+  - juju switch $CIENV
+  - mkdir ../trusty
+  - cd .. && mv {charm} trusty && cd trusty/{charm}
+  - bundletester -F -l DEBUG -v""".format(repository=repo,  charm=args.charm)
+
+    print ""
+    print "--------- Local  Repository Config - .drone.yml -----------"
+    print ""
+    print LOCFG
+
+def server_config(args):
+    envpath = "{}/.juju/environments.yaml".format(os.getenv('HOME'))
+    if not os.path.exists(envpath):
+        return
+
+    with open("{}/.juju/environments.yaml".format(os.getenv('HOME')), 'r') as f:
+        envyaml = f.read()
+
+    encoded = base64.b64encode(envyaml)
+
+    print ""
+    print "--------- CI Server Project Config  -----------"
+    print ""
+
+    print "Copy and paste this into your configuration"
+    project_config = """
+    CIENV: {}
+    ENVYAML: {}""".format(args.env, encoded)
+    print project_config
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-r", "--repository", help="Repository HTTP clone url")
+    parser.add_argument("-c", "--charm", help="Charm name")
+    parser.add_argument("-e", "--env", help="Juju environment name")
+    args = parser.parse_args()
+
+    server_config(args)
+    repository_config(args)
