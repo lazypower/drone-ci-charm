@@ -1,0 +1,4 @@
+image: jujusolutions/charmbox
+script:
+    - make tox
+    - make lint
