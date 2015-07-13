@@ -1,4 +1,8 @@
 options:
+  drone_sum:
+    type: string
+    default: a22db505822d6cccc6cfd5435eb4a18b4b3a60a58e0c32c6deaacf8c07626e5e
+    description: "Sha256 sum of the drone payload from downloads.drone.io"
   github_enabled:
     type: boolean
     default: false

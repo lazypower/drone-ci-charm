@@ -21,7 +21,7 @@
   notify: "render drone template"
 
 - name: Fetch Drone.
-  get_url: url=http://downloads.drone.io/master/drone.deb dest=/tmp/drone.deb
+  get_url: url=http://downloads.drone.io/master/drone.deb dest=/tmp/drone.deb sha256sum={{drone_sum}}
 
 - name: Install Drone
   command: dpkg -i /tmp/drone.deb
