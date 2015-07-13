@@ -1,9 +1,9 @@
 #!/bin/bash
 
-action-set previous-version $(apt-cache policy drone)
+action-set previous="$(apt-cache policy drone)"
 
 wget -O /tmp/drone.deb http://downloads.drone.io/master/drone.deb
 
 dpkg -i /tmp/drone.deb
 
-action-set installed-version $(apt-cache policy drone)
+action-set installed="$(apt-cache policy drone)"
