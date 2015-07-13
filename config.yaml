@@ -1,4 +1,8 @@
 options:
+  github_enabled:
+    type: boolean
+    default: false
+    description: "Enable GitHub integration"
   github_client:
     type: string
     default:
@@ -7,6 +11,10 @@ options:
     type: string
     default:
     description: "Github application secret"
+  gogs_enabled:
+    type: boolean
+    default: false
+    description: "Enable Gogs integration"
   gogs_url:
     type: string
     default:

@@ -9,6 +9,6 @@ provides:
   website:
     interface: http
 requires:
-  mysqldb:
+  db:
     interface: mysql
 

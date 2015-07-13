@@ -20,8 +20,7 @@ def install_charmhelpers():
         subprocess.check_call(['apt-get', 'install', '-y', 'python-dev'])
         subprocess.check_call(['pip', 'install', 'charmhelpers'])
 
+
 def install_python_modules():
     subprocess.check_call(['pip', 'install', 'ansible'])
     subprocess.check_call(['pip', 'install', 'path.py'])
-
-
