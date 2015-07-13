@@ -3,12 +3,5 @@
 import setup
 import sys
 
-HOSTINVENTORY="localhost"
-
-# Work around some wonkyness with ansible
-with open('/etc/ansible/hosts', 'w') as f:
-    f.write(HOSTINVENTORY)
-
-
 if __name__ == "__main__":
     setup.pre_install()
