@@ -18,7 +18,8 @@
 
 - set_fact:
     appsecret: "{{session_token.stdout}}"
-  notify: "render drone template"
+  notify:
+      - drone config
 
 - name: Fetch Drone.
   get_url: url=http://downloads.drone.io/master/drone.deb dest=/tmp/drone.deb sha256sum={{drone_sum}}
@@ -28,9 +29,8 @@
   args:
      creates: /usr/local/bin/droned
 
-- name: render drone template
-  template: src=../templates/drone.toml dest=/etc/drone/drone.toml
-
+#- name: render drone template
+#  template: src=../templates/drone.toml dest=/etc/drone/drone.toml
 
 - name: Open port 80
   command: open-port 80
