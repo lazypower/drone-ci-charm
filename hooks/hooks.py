@@ -9,6 +9,7 @@ from charmhelpers.contrib.ansible import AnsibleHooks
 # handled by default by running all sections of the playbook
 # tagged with the hook name.
 
+
 def hook_names(here=path(__file__).parent):
     for name in (x.basename()
                  for x in here.files() if x.islink()):
@@ -23,7 +24,6 @@ if not os.path.exists('/etc/ansible'):
     # Work around some wonkyness with ansible
     with open('/etc/ansible/hosts', 'w') as f:
         f.write('localhost')
-
 
 
 if __name__ == "__main__":
