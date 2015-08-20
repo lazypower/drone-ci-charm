@@ -1,0 +1,32 @@
+---
+
+- name: Receive relation data for private-address
+  shell: relation-get private-address
+  register: database_address
+
+- name: Receive relation data for database
+  shell: relation-get database
+  register: database_name
+
+- name: Receive relation data for username
+  shell: relation-get user
+  register: database_user
+
+- name: Receive relation data for  password
+  shell: relation-get password
+  register: database_password
+
+- name: Generate secret session token
+  command: pwgen -c -s -1 60
+  register: session_token
+
+- set_fact:
+    db_host: "{{database_address.stdout}}"
+    db_name: "{{database_name.stdout}}"
+    db_user: "{{database_user.stdout}}"
+    db_pass: "{{database_password.stdout}}"
+    mysql_enabled: 1
+    appsecret: "{{session_token.stdout}}"
+  notify:
+    - render config
+

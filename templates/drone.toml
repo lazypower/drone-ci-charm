@@ -5,6 +5,12 @@
   secret="{{appsecret}}"
   expires="72h"
 
+{% if mysql_enabled == 1 %}
+[database]
+driver = "mysql"
+datasource = "{{db_user}}:{{db_pass}}@tcp({{db_host}}:3306)/{{db_name}}"
+{% endif %}
+
 {% if github_enabled == True %}
 [github]
   client = "{{ github_client }}"

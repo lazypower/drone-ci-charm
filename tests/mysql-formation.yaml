@@ -1,0 +1,9 @@
+drone-with-mysql:
+  services:
+    "drone":
+        charm: local:trusty/drone
+        exposed: true
+    "mysql":
+        charm: cs:trusty/mysql
+  relations:
+    - ['drone:db', 'mysql:db']

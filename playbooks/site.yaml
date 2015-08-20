@@ -1,4 +1,7 @@
 - hosts: all
+  gather_facts: true
+  vars:
+      mysql_enabled: 0
   tasks:
     - include: config-changed.yaml
       tags:
@@ -14,3 +17,15 @@
       service: name=drone state=stopped
       tags:
         - stop
+
+    - name: External Database Configuration
+      include: db-relation-changed.yaml
+      tags:
+        - db-relation-changed
+
+    - name: render config
+      template: src=../templates/drone.toml dest=/etc/drone/drone.toml
+      tags:
+        - db-relation-changed
+        - config-changed
+

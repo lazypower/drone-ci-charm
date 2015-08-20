@@ -13,14 +13,13 @@ git repositories hosted by:
 - BitBucket
 
 Drone CI has a flexible job configuration via a single `.drone.yml` include in
-your repository. For more information, see the
-[upstream documentation](https://github.com/drone/drone/blob/v0.2.1/README.md#builds)
+your repository. For more information, see the [upstream documentation](https://github.com/drone/drone/blob/v0.2.1/README.md#builds)
 
 
 ## Getting Started with the DroneCI Charm
 
 DroneCI is deployable as a stand alone instance by default, leveraging SQLITE
-database, and no external dependnecies.
+database, and no external dependencies.
 
     juju deploy cs:trusty/drone-ci
 
@@ -36,29 +35,6 @@ via relation
     juju deploy mysql
     juju add-relation drone-ci:db mysql:db
 
-
-### Auth providers
-
-Drone requires an Authorization Provider in order to 'activate' itself. Drone
-fully integrates with the API's as a consumer leveraging the service you login
-from.
-
-#### Setting up GitHub
-
-Generate Client and Secret
-
-You must register your application with GitHub in order to generate a Client
-and Secret. Navigate to your account settings and choose Applications from the
-menu, and click [Register new application](https://github.com/settings/applications/new).
-
-Please use `/api/auth/github.com` as the Authorization callback URL path.
-
-![drone-ci github API setup](docs/img/github_setup.png)
-
-Once you have your application configured in GitHub, set these API credentials
-on the charm
-
-    juju set drone github_client=XXX github_secret=XXX github_enabled=true
 
 
 #### Config Helper
@@ -83,10 +59,9 @@ configuration, and the .drone.yaml to be embedded in the git repository.
 
 ## Known Issues / Caveats
 
-#### Auth Providers
-
-To begin, only GitHub is supported. Each auth provider will land shortly after
-the charm has stabilized, or interest in aforementioned provider is raised.
+#### Auth providers
+Drone currently supports several third party AUTH providers, which have not
+yet been added to the charm.
 
 #### Upstream Release Schedule / Compatibility
 Drone also iterates quickly, and has known to break backwords compatibility
