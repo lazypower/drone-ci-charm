@@ -1,5 +1,12 @@
 ---
 
+- name: grab release info
+  shell: uname -r
+  register: rel
+
+- set_fact:
+    thisrel: "{{ rel.stdout }}"
+
 - name: Add upstream apt key
   apt_key: id=36A1D7869245C8950F966E92D8576A8BA88D21E9 keyserver=keyserver.ubuntu.com
 
@@ -11,6 +18,8 @@
   with_items:
       - lxc-docker
       - pwgen
+      - "linux-image-extra-{{thisrel}}"
+      - aufs-tools
 
 - name: Generate secret session token
   command: pwgen -c -s -1 60
