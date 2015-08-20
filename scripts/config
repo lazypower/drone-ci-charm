@@ -34,8 +34,12 @@ def server_config(args):
     if not os.path.exists(envpath):
         return
 
-    with open("{}/.juju/environments.yaml".format(os.getenv('HOME')), 'r') as f:
-        envyaml = f.read()
+    if not args.file:
+        with open("{}/.juju/environments.yaml".format(os.getenv('HOME')), 'r') as f:
+            envyaml = f.read()
+    else:
+        with open(args.file, 'r') as f:
+            envyaml = f.read()
 
     encoded = base64.b64encode(envyaml)
 
@@ -54,6 +58,8 @@ if __name__ == "__main__":
     parser.add_argument("-r", "--repository", help="Repository HTTP clone url")
     parser.add_argument("-c", "--charm", help="Charm name")
     parser.add_argument("-e", "--env", help="Juju environment name")
+    parser.add_argument("-f", "--file", help="Path to environments.yaml",
+                        default="~/juju/environments.yaml")
     args = parser.parse_args()
 
     server_config(args)
